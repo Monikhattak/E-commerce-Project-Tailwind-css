@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import logo_img from '../assets/logo.png';
 import { PiCaretDownBold } from "react-icons/pi";
-
+import { BiSearch } from "react-icons/bi";
+import { RiDiscountPercentFill } from "react-icons/ri";
+import { IoIosHelpCircleOutline } from "react-icons/io";
+import { FcBusinessman } from "react-icons/fc";
+import { IoCartOutline } from "react-icons/io5";
 function Navber() {
     const [togle, settogle] = useState(false);
      
@@ -11,6 +15,29 @@ function Navber() {
     const hidesideMenu =()=>{
         settogle(false)
     }
+    const link =[
+        {
+            icon:   <BiSearch />,
+            name:"Search"
+        },
+        {
+            icon:   <RiDiscountPercentFill />,
+            name:"Offer",
+            sup: "New"
+        },
+        {
+            icon:  <IoIosHelpCircleOutline />,
+            name:"Help"
+        },
+        {
+            icon:    <FcBusinessman />,
+            name:"SignIn"
+        },
+        {
+            icon:    <IoCartOutline />,
+            name:"Cart"
+        }
+    ]
 
     return (
         <>
@@ -27,7 +54,7 @@ function Navber() {
                 }}></div>
             </div>
             <header className='p-[15px] shadow-xl'>
-                <div className='max-w-[1200px] mx-auto border border-red-500 flex items-center'>
+                <div className='max-w-[1200px] mx-auto border\ flex items-center'>
                     <div className='w-[120px]'>
                         <img src={logo_img} alt="logo" className='w-full' />
                     </div>
@@ -37,7 +64,24 @@ function Navber() {
                             <PiCaretDownBold onClick={showSideMenu} className='cursor-pointer' />
                         </button>
                     </div>
+                    <nav className=' flex list-none gap-10  ml-auto text-[18px] font-semibold'>
+                       {
+                        link.map(
+                            (link,index)=>{
+                               return <li key={index}  className='flex cursor-pointer hover:text-[#e78544] items-center gap-2'>
+                               {link.icon}
+                               {link.name}
+                               <sup> {link.sup}</sup>
+                                </li>
+
+                            }
+                        )
+                       } 
+                   
+        
+                </nav>
                 </div>
+           
             </header>
         </>
     )
