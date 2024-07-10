@@ -1,19 +1,18 @@
-import React, { useRef } from 'react';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { menu_list } from '../../assets/assets';
+import { useState } from "react";
 
 function Category() {
-  const scrollRef = useRef(null);
+  const [slide, setSlide] = useState(0);
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === 'left'
-        ? scrollLeft - clientWidth
-        : scrollLeft + clientWidth;
+  const nextSlide = () => {
+    if (slide == menu_list.length - 8) return false; 
+    setSlide(slide + 3);
+  };
 
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
+  const prevSlide = () => {
+    if (slide == 0) return false;
+    setSlide(slide - 3);
   };
 
   return (
@@ -23,29 +22,38 @@ function Category() {
         <div className='flex'>
           <div 
             className='cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2' 
-            onClick={() => scroll('left')}
+            onClick={prevSlide}
           >
             <FaArrowLeft />
           </div>
           <div 
             className='cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2' 
-            onClick={() => scroll('right')}
+            onClick={nextSlide}
           >
             <FaArrowRight />
           </div>
         </div>
       </div>
-      <div 
-        className='flex overflow-x-auto scrollbar-hide snap-x snap-mandatory' 
-        ref={scrollRef}
-      >
-        {menu_list.map((item, index) => (
-          <div key={index} className='flex-shrink-0 w-[100px] mx-2 text-center snap-start'>
-            <img src={item.menu_image} alt={item.menu_name} className='w-full  object-cover rounded-lg' />
-            <p className='mt-2'>{item.menu_name}</p>
-          </div>
-        ))}
+      <div className='overflow-hidden'>
+        <div 
+          className='flex transition-transform duration-300' 
+          style={{ transform: `translateX(-${slide * 100}px)` }} 
+        >
+          {menu_list.map((item, index) => (
+            <div 
+              key={index} 
+              className='flex-shrink-0 w-[100px] mx-2 text-center'
+            >
+              <img src={item.menu_image} alt={item.menu_name} className='w-full object-cover rounded-lg' />
+              <p className='mt-2'>{item.menu_name}</p>
+            </div>
+            
+          ))}
+          
+        </div>
+        <hr className="my-20 border[1px]"/>
       </div>
+      
     </div>
   );
 }
