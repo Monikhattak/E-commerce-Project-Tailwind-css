@@ -1,28 +1,63 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { food_list } from '../../assets/assets';
 
 function Card() {
+  const [slide, setSlide] = useState(0);
+  const scrollRef = useRef(null);
+  const cardWidth = 300; // Adjusted the width to provide more space for card content
+  const cardsPerView = 4; 
+  const maxSlide = food_list.length - cardsPerView;
+
+  const nextSlide = () => {
+    if (slide >= maxSlide) return;
+    setSlide(slide + 1);
+    scrollRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  };
+
+  const prevSlide = () => {
+    if (slide <= 0) return;
+    setSlide(slide - 1);
+    scrollRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  };
+
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Our Delicious Menu</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {food_list.map(({ id, name, title, description, price, image }) => (
+    <div className='max-w-[1200px] mx-auto'>
+      <div className='flex my-3 items-center justify-between'>
+      <div className='text-[25px] font-bold'>Top Restaurant Chains In Islamabad</div>
+        <div className='flex'>
           <div 
-            key={id} 
-            className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+            className={`cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2 ${slide === 0 && 'opacity-50 cursor-not-allowed'}`} 
+            onClick={prevSlide}
           >
-            <img src={image} alt={name} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-2 text-gray-800">{name}</h2>
-              <p className="text-sm text-gray-500 mb-4">{title}</p>
-              <p className="text-gray-700 mb-4">{description}</p>
-              <p className="text-lg font-semibold text-gray-900 mb-4">${price}</p>
-              <button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
-                Add to Cart
-              </button>
-            </div>
+            <FaArrowLeft />
           </div>
-        ))}
+          <div 
+            className={`cursor-pointer flex justify-center items-center w-[30px] h-[30px] bg-[#e2e2e7] rounded-full mx-2 ${slide >= maxSlide && 'opacity-50 cursor-not-allowed'}`} 
+            onClick={nextSlide}
+          >
+            <FaArrowRight />
+          </div>
+        </div>
+      </div>
+      <div className='overflow-hidden' ref={scrollRef}>
+        <div className='flex'>
+          {food_list.map(({ id, name, title, description, price, image }) => (
+            <div 
+              key={id} 
+              className='flex-shrink-0 w-[300px] mx-2 text-center bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300'
+            >
+              <img src={image} alt={name} className='w-full h-64 object-cover' />
+              <div className="p-4">
+                <h2 className="text-2xl font-bold mb-2 text-gray-800">{name}</h2>
+                <p className="text-sm text-gray-500 mb-4">{title}</p>
+                <p className="text-gray-700 mb-4">{description}</p>
+                <p className="text-green-500 text-xl font-semibold mb-4">${price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <hr className="my-20 border-1"/>
       </div>
     </div>
   );
