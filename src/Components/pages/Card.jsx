@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { food_list } from '../../assets/assets';
+import Top_list from './Top_list';
 
 function Card() {
   const [slide, setSlide] = useState(0);
   const scrollRef = useRef(null);
-  const cardWidth = 300; // Adjusted the width to provide more space for card content
+  const cardWidth = 300; 
   const cardsPerView = 4; 
   const maxSlide = food_list.length - cardsPerView;
 
@@ -52,13 +53,16 @@ function Card() {
                 <h2 className="text-2xl font-bold mb-2 text-gray-800">{name}</h2>
                 <p className="text-sm text-gray-500 mb-4">{title}</p>
                 <p className="text-gray-700 mb-4">{description}</p>
-                <p className="text-green-500 text-xl font-semibold mb-4">${price}</p>
+                <button className="bg-gradient-to-r from-cyan-700 to-gray-500 text-white py-2 px-5 rounded-full hover:from-green-500 hover:to-green-700">
+                 ADD Cart  ${price}
+                </button>
               </div>
             </div>
           ))}
         </div>
         <hr className="my-20 border-1"/>
       </div>
+      <Top_list/>
     </div>
   );
 }

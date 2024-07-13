@@ -393,3 +393,98 @@ export const food_list = [
         category: "Noodles"
     }
 ]
+export const top_list= 
+    [
+        {
+            _id: "1",
+            name: "Greek salad",
+            image: food_1,
+            price: 12,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Salad"
+        },
+        {
+            _id: "32",
+            name: "Cooked Noodles",
+            image: food_32,
+            price: 15,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Noodles"
+        },
+        {
+            _id: "28",
+            name: "Chicken Pasta",
+            image: food_28,
+            price: 24,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Pasta"
+        }, {
+            _id: "29",
+            name: "Buttter Noodles",
+            image: food_29,
+            price: 14,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Noodles"
+        },
+        {
+            _id: "22",
+            name: "Fried Cauliflower",
+            image: food_22,
+            price: 22,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Pure Veg"
+        }, {
+            _id: "23",
+            name: "Mix Veg Pulao",
+            image: food_23,
+            price: 10,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Pure Veg"
+        },
+        {
+            _id: "13",
+            name: "Chicken Sandwich",
+            image: food_13,
+            price: 12,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Sandwich"
+        },
+        {
+            _id: "14",
+            name: "Vegan Sandwich",
+            image: food_14,
+            price: 18,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Sandwich"
+        },
+        {
+            _id: "7",
+            name: "Chicken Rolls",
+            image: food_7,
+            price: 20,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Rolls"
+        }, {
+            _id: "8",
+            name: "Veg Rolls",
+            image: food_8,
+            price: 15,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Rolls"
+        }, {
+            _id: "9",
+            name: "Ripple Ice Cream",
+            image: food_9,
+            price: 14,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Deserts"
+        }, {
+            _id: "10",
+            name: "Fruit Ice Cream",
+            image: food_10,
+            price: 22,
+            description: "Food provides essential nutrients for overall health and well-being",
+            category: "Deserts"
+        }
+
+    ]

@@ -4,6 +4,7 @@ import Category from './Components/pages/Category'
 import TopRest from './Components/pages/TopRest'
 
 
+
 function App() {
 
 
@@ -12,6 +13,7 @@ function App() {
     <Navber/>
     <Category/>
     <TopRest/>
+   
     </>
   )
 }
