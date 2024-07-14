@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { top_list } from '../../assets/assets';
+import { FaFilter, FaSort, FaUtensils, FaShoppingCart, FaPepperHot, FaHamburger } from 'react-icons/fa';
 
 function TopList() {
   const [isAtTop, setIsAtTop] = useState(false);
@@ -23,24 +24,63 @@ function TopList() {
     };
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slideInUp');
+        } else {
+          entry.target.classList.remove('animate-slideInUp');
+        }
+      });
+    });
+
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => observer.observe(card));
+
+    return () => {
+      cards.forEach(card => observer.unobserve(card));
+    };
+  }, []);
+
   return (
     <div className='max-w-[1200px] mx-auto p-6' ref={componentRef}>
       <div className='flex my-3 items-center justify-between'>
         <div className='text-[25px] font-bold text-[#333]'>Top Restaurant Chains Online</div>
       </div>
-      <div ref={componentRef} className={isAtTop ? 'fixed top-0 z-[9999] bg-white w-full left-0 ' : ''}>
-        <div className='max-w[1200px] mx-auto flex my-5 gap-3'>
-          <div className='p-3 rounded-md shadow'>Filter</div>
-          <div className='p-3 rounded-md shadow'>Sort By</div>
-          <div className='p-3 rounded-md shadow'>Filter</div>
-          <div className='p-3 rounded-md shadow'>Filter</div>
+      <div ref={componentRef} className={isAtTop ? 'fixed top-0 z-[9999] bg-white w-full left-0' : ''}>
+        <div className='max-w-[1200px] mx-auto flex my-5 gap-3'>
+          <div className='p-3 rounded-md shadow flex items-center'>
+            <FaFilter className='mr-2' />
+            <span>Filter</span>
+          </div>
+          <div className='p-3 rounded-md shadow flex items-center'>
+            <FaSort className='mr-2' />
+            <span>Sort By</span>
+          </div>
+          <div className='p-3 rounded-md shadow flex items-center'>
+            <FaUtensils className='mr-2' />
+            <span>Restaurant</span>
+          </div>
+          <div className='p-3 rounded-md shadow flex items-center'>
+            <FaShoppingCart className='mr-2' />
+            <span>Grocery</span>
+          </div>
+          <div className='p-3 rounded-md shadow flex items-center'>
+            <FaPepperHot className='mr-2' />
+            <span>Spicy</span>
+          </div>
+          <div className='p-3 rounded-md shadow flex items-center'>
+            <FaHamburger className='mr-2' />
+            <span>Fast Food</span>
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {top_list.map(({ id, name, title, description, price, image }) => (
           <div 
             key={id} 
-            className="bg-gradient-to-br from-white to-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+            className="card bg-gradient-to-br from-white to-gray-100 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300"
           >
             <img src={image} alt={name} className="w-full h-48 object-cover" />
             <div className="p-5">
