@@ -9,11 +9,7 @@ function TopList() {
   const handleScroll = () => {
     if (componentRef.current) {
       const topPosition = componentRef.current.getBoundingClientRect().top;
-      if (topPosition <= 0) {
-        setIsAtTop(true);
-      } else {
-        setIsAtTop(false);
-      }
+      setIsAtTop(topPosition <= 0);
     }
   };
 
@@ -44,36 +40,34 @@ function TopList() {
   }, []);
 
   return (
-    <div className='max-w-[1200px] mx-auto p-6' ref={componentRef}>
-      <div className='flex my-3 items-center justify-between'>
-        <div className='text-[25px] font-bold text-[#333]'>Top Restaurant Chains Online</div>
+    <div className="max-w-[1200px] mx-auto p-6" ref={componentRef}>
+      <div className="flex my-3 items-center justify-between">
+        <div className="text-3xl font-bold text-[#333]">Top Restaurant Chains Online</div>
       </div>
-      <div ref={componentRef} className={isAtTop ? 'fixed top-0 z-[9999] bg-white w-full left-0' : ''}>
-        <div className='max-w-[1200px] mx-auto flex my-5 gap-3'>
-          <div className='p-3 rounded-md shadow flex items-center'>
-            <FaFilter className='mr-2' />
-            <span>Filter</span>
-          </div>
-          <div className='p-3 rounded-md shadow flex items-center'>
-            <FaSort className='mr-2' />
-            <span>Sort By</span>
-          </div>
-          <div className='p-3 rounded-md shadow flex items-center'>
-            <FaUtensils className='mr-2' />
-            <span>Restaurant</span>
-          </div>
-          <div className='p-3 rounded-md shadow flex items-center'>
-            <FaShoppingCart className='mr-2' />
-            <span>Grocery</span>
-          </div>
-          <div className='p-3 rounded-md shadow flex items-center'>
-            <FaPepperHot className='mr-2' />
-            <span>Spicy</span>
-          </div>
-          <div className='p-3 rounded-md shadow flex items-center'>
-            <FaHamburger className='mr-2' />
-            <span>Fast Food</span>
-          </div>
+      <div className={`${isAtTop ? 'fixed top-0 z-[9999] bg-white w-full left-0' : ''} max-w-[1200px] mx-auto flex flex-wrap items-center my-5 gap-3`}>
+        <div className="p-3 rounded-md shadow flex items-center">
+          <FaFilter className="mr-2" />
+          <span>Filter</span>
+        </div>
+        <div className="p-3 rounded-md shadow flex items-center">
+          <FaSort className="mr-2" />
+          <span>Sort By</span>
+        </div>
+        <div className="p-3 rounded-md shadow flex items-center">
+          <FaUtensils className="mr-2" />
+          <span>Restaurant</span>
+        </div>
+        <div className="p-3 rounded-md shadow flex items-center">
+          <FaShoppingCart className="mr-2" />
+          <span>Grocery</span>
+        </div>
+        <div className="p-3 rounded-md shadow flex items-center">
+          <FaPepperHot className="mr-2" />
+          <span>Spicy</span>
+        </div>
+        <div className="p-3 rounded-md shadow flex items-center">
+          <FaHamburger className="mr-2" />
+          <span>Fast Food</span>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -84,7 +78,7 @@ function TopList() {
           >
             <img src={image} alt={name} className="w-full h-48 object-cover" />
             <div className="p-5">
-              <h2 className="text-2xl font-bold mb-3 text-[#111]">{name}</h2>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 text-[#111]">{name}</h2>
               <p className="text-gray-600 mb-4">{description}</p>
               <p className="text-gray-500 mb-2 italic">{title}</p>
               <div className="flex items-center justify-between mt-4">
@@ -97,7 +91,7 @@ function TopList() {
           </div>
         ))}
       </div>
-       <hr className="my-20 border[1px]"/>
+      <hr className="my-20 border-[1px]"/>
     </div>
   );
 }

@@ -488,3 +488,25 @@ export const top_list=
         }
 
     ]
+   export  const popularCities = [
+        { id: 1, name: 'Karachi' },
+        { id: 2, name: 'Lahore' },
+        { id: 3, name: 'Islamabad' },
+        { id: 4, name: 'Rawalpindi' },
+        { id: 5, name: 'Faisalabad' },
+        { id: 6, name: 'Multan' },
+        { id: 7, name: 'Peshawar' },
+        { id: 8, name: 'Quetta' },
+        { id: 9, name: 'Gujranwala' },
+        { id: 10, name: 'Sialkot' },
+        { id: 11, name: 'Hyderabad' },
+        { id: 12, name: 'Bahawalpur' },
+        { id: 13, name: 'Sargodha' },
+        { id: 14, name: 'Sukkur' },
+        { id: 15, name: 'Jhang' },
+        { id: 16, name: 'Sheikhupura' },
+        { id: 17, name: 'Mardan' },
+        { id: 18, name: 'Kasur' },
+        { id: 19, name: 'Gujrat' },
+        { id: 20, name: 'Mingora' },
+      ];
