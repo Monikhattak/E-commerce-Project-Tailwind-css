@@ -97,6 +97,7 @@ function TopList() {
           </div>
         ))}
       </div>
+       <hr className="my-20 border[1px]"/>
     </div>
   );
 }
